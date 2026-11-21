@@ -3,121 +3,421 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101020">
 <title>DreamAI Studio</title>
+
 <style>
-:root{--bg:#0b0b16;--panel:#151528;--panel2:#1d1d35;--line:#30304c;--text:#f4f3ff;--muted:#aaa8c4;--purple:#8b5cf6;--pink:#ec4899;--cyan:#38bdf8}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#25204a 0,transparent 32%),var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
-button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:11px;padding:11px 15px;background:linear-gradient(110deg,var(--purple),var(--pink));color:white;font-weight:650}
-button.secondary{background:#292943;border:1px solid var(--line)}button:disabled{opacity:.45;cursor:not-allowed}
-header{height:66px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;background:#101020ed;backdrop-filter:blur(14px);z-index:5}
-.logo{font-size:21px;font-weight:850;letter-spacing:-.7px}.logo span{color:#bd9aff}.header-right{display:flex;gap:9px;align-items:center}
-.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 66px)}aside{border-right:1px solid var(--line);padding:20px 13px;background:#10102099}
-.nav-label{font-size:11px;color:#777592;letter-spacing:1.3px;margin:17px 10px 8px}.nav{display:flex;gap:11px;align-items:center;padding:11px 12px;border-radius:10px;color:#c6c3dc;cursor:pointer;margin:3px 0}.nav:hover,.nav.active{background:#282344;color:white}.nav.active{box-shadow:inset 3px 0 var(--purple)}
-main{padding:25px;max-width:1500px;width:100%;margin:auto}.welcome{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:22px}.welcome h1{font-size:27px;margin:0 0 5px}.muted{color:var(--muted)}.hero{padding:24px;border:1px solid #4d3c78;border-radius:18px;background:linear-gradient(120deg,#30205a,#18294a 70%,#211d3d);margin-bottom:24px}.hero h2{font-size:25px;margin:0 0 8px}.hero p{color:#d2c9ef;max-width:650px}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin:25px 0 13px}.section-title h2{font-size:19px;margin:0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:linear-gradient(150deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:15px;padding:17px;min-width:0}.card.clickable{cursor:pointer;transition:.18s}.card.clickable:hover{transform:translateY(-3px);border-color:#8061d8}.icon{font-size:27px;margin-bottom:12px}.card h3{margin:0 0 7px;font-size:16px}.card p{color:var(--muted);font-size:13px;line-height:1.5;margin:0 0 13px}.tag{font-size:10px;padding:4px 8px;border-radius:30px;background:#44316c;color:#e4d7ff;margin-left:6px}
-.pills{display:flex;gap:8px;flex-wrap:wrap}.pill{background:#22223a;border:1px solid var(--line);padding:8px 12px;border-radius:30px;color:#d7d3eb;font-size:13px}
-.page{display:none}.page.active{display:block}.field{margin:13px 0}.field label{display:block;font-size:13px;color:#d5d1e8;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;background:#0f1020;border:1px solid var(--line);border-radius:10px;color:white;padding:11px}.field textarea{min-height:105px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.upload{border:1px dashed #65568f;border-radius:13px;padding:18px;text-align:center;background:#111124;color:#c6c0df}.upload input{max-width:100%;margin-top:10px}.preview{width:100%;max-height:430px;background:#05050a;border-radius:13px;margin-top:13px;display:block}.notice{border:1px solid #66522a;background:#302819;color:#f6dfac;padding:12px;border-radius:11px;font-size:13px;line-height:1.5;margin:13px 0}.good{border-color:#315f50;background:#142b25;color:#b9f3d9}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.timeline{height:58px;background:#0d0d1b;border:1px solid var(--line);border-radius:10px;padding:8px;display:flex;align-items:center;gap:5px;overflow:hidden}.clip{height:35px;min-width:70px;flex:1;background:linear-gradient(90deg,#6346a7,#c14b91);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px}
-.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{background:#17172b;border:1px solid var(--line);border-radius:12px;padding:15px}.stat strong{display:block;font-size:22px}.empty{padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:13px}
-footer{padding:22px;color:#77758e;text-align:center;font-size:12px}
-@media(max-width:850px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line);padding:8px;display:flex;overflow:auto;gap:4px}.nav-label{display:none}.nav{white-space:nowrap;padding:9px 11px;font-size:13px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding:17px}}
-@media(max-width:520px){header{padding:0 13px}.logo{font-size:18px}.header-right button{padding:8px 10px;font-size:12px}.grid,.row,.statrow{grid-template-columns:1fr}.welcome{align-items:flex-start;flex-direction:column}.hero{padding:18px}.hero h2{font-size:21px}main{padding:13px}}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1020;
+  color: white;
+}
+
+header {
+  padding: 18px;
+  background: #151d35;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: bold;
+  color: #8b9cff;
+}
+
+button {
+  border: 0;
+  padding: 12px 16px;
+  border-radius: 9px;
+  background: #6658ee;
+  color: white;
+  cursor: pointer;
+  margin: 4px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #394563;
+  background: #151d35;
+  color: white;
+}
+
+nav {
+  display: flex;
+  overflow-x: auto;
+  gap: 7px;
+  padding: 10px;
+  background: #11182b;
+}
+
+nav button {
+  white-space: nowrap;
+}
+
+main {
+  padding: 16px;
+  max-width: 850px;
+  margin: auto;
+}
+
+.card {
+  background: #151d35;
+  padding: 18px;
+  border-radius: 14px;
+  margin: 14px 0;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.output {
+  white-space: pre-wrap;
+  background: #0b1020;
+  padding: 14px;
+  border-radius: 8px;
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+}
+
+img, video {
+  max-width: 100%;
+  margin-top: 12px;
+  border-radius: 10px;
+}
+
+.small {
+  color: #aab5d0;
+  font-size: 13px;
+}
 </style>
 </head>
+
 <body>
-<header><div class="logo">✨ DreamAI <span>Studio</span></div><div class="header-right"><button class="secondary" onclick="showPage('projects')">My Creations</button><button onclick="showPage('home')">Home</button></div></header>
-<div class="layout">
-<aside>
-<div class="nav-label">WORKSPACE</div>
-<div class="nav active" data-page="home" onclick="showPage('home')">⌂ Home</div>
-<div class="nav" data-page="projects" onclick="showPage('projects')">▣ My Creations</div>
-<div class="nav" data-page="assets" onclick="showPage('assets')">◈ Asset Store</div>
-<div class="nav" data-page="earnings" onclick="showPage('earnings')">◇ Earnings</div>
-<div class="nav" data-page="analytics" onclick="showPage('analytics')">▥ Data Analysis</div>
-<div class="nav-label">CREATE</div>
-<div class="nav" data-page="story" onclick="showPage('story')">✦ Story To Video</div>
-<div class="nav" data-page="imagevideo" onclick="showPage('imagevideo')">▧ Image To Video</div>
-<div class="nav" data-page="faceswap" onclick="showPage('faceswap')">🎭 Face Swap Video</div>
-<div class="nav" data-page="editor" onclick="showPage('editor')">✂ Video Editor</div>
-<div class="nav" data-page="voice" onclick="showPage('voice')">♫ AI Voice</div>
-<div class="nav-label">HELP</div>
-<div class="nav" data-page="help" onclick="showPage('help')">? Tutorials & API</div>
-</aside>
+
+<header>
+  <div class="logo">✨ DreamAI Studio</div>
+  <span>Studio</span>
+</header>
+
+<nav>
+  <button onclick="showPage('home')">Home</button>
+  <button onclick="showPage('story')">Story to Video</button>
+  <button onclick="showPage('image')">Image to Video</button>
+  <button onclick="showPage('face')">Face Swap</button>
+  <button onclick="showPage('editor')">Video Editor</button>
+  <button onclick="showPage('voice')">AI Voice</button>
+  <button onclick="showPage('creations')">My Creations</button>
+</nav>
+
 <main>
-<section class="page active" id="home">
-<div class="welcome"><div><h1>Welcome to DreamAI Studio</h1><div class="muted">Your creative workspace for AI-assisted videos.</div></div><button onclick="showPage('story')">＋ Create New Video</button></div>
-<div class="hero"><h2>Turn your ideas into stories ✨</h2><p>Plan scenes, prepare generation prompts, edit your own clips and organize projects in one mobile-friendly studio.</p><button onclick="showPage('story')">Start creating →</button></div>
-<div class="section-title"><h2>Creation Hub</h2></div>
-<div class="grid">
-<div class="card clickable" onclick="showPage('story')"><div class="icon">📖</div><h3>Story To Video <span class="tag">POPULAR</span></h3><p>Turn a story or script into a scene-by-scene video plan.</p><button class="secondary">Open</button></div>
-<div class="card clickable" onclick="showPage('imagevideo')"><div class="icon">🖼️</div><h3>Image To Video</h3><p>Upload an image and prepare motion directions for an AI video model.</p><button class="secondary">Open</button></div>
-<div class="card clickable" onclick="showPage('faceswap')"><div class="icon">🎭</div><h3>Face Swap Video</h3><p>Authorized face replacement workflow with source and target uploads.</p><button class="secondary">Open</button></div>
-<div class="card clickable" onclick="showPage('editor')"><div class="icon">🎬</div><h3>Video Toolbox</h3><p>Import, preview, trim and export a clip in your browser.</p><button class="secondary">Open</button></div>
-<div class="card clickable" onclick="showPage('voice')"><div class="icon">🎙️</div><h3>AI Voiceover</h3><p>Preview narration using voices available on your device.</p><button class="secondary">Open</button></div>
-<div class="card clickable" onclick="showPage('projects')"><div class="icon">📁</div><h3>My Creations</h3><p>Keep your project notes saved in this browser.</p><button class="secondary">Open</button></div>
-</div>
-<div class="section-title"><h2>Channel Topics</h2></div><div class="pills"><span class="pill">Kids Video</span><span class="pill">Horror Video</span><span class="pill">Bedtime Story</span><span class="pill">Explainer</span><span class="pill">Biography</span><span class="pill">Historical Story</span><span class="pill">Music Video</span><span class="pill">Interview</span><span class="pill">Short Drama</span></div>
+
+<section id="home" class="page active">
+  <h1>Welcome to DreamAI Studio</h1>
+  <p class="small">Your creative video studio.</p>
+
+  <div class="card">
+    <h2>🎬 Create Videos</h2>
+    <p>Turn your ideas into video plans and creative projects.</p>
+    <button onclick="showPage('story')">Start Creating</button>
+  </div>
+
+  <div class="card">
+    <h3>🖼 Image to Video</h3>
+    <button onclick="showPage('image')">Open Tool</button>
+  </div>
+
+  <div class="card">
+    <h3>🎙 AI Voice</h3>
+    <button onclick="showPage('voice')">Open Tool</button>
+  </div>
 </section>
 
-<section class="page" id="story">
-<div class="welcome"><div><h1>Story To Video</h1><div class="muted">Create a scene plan and generation prompt from your idea.</div></div></div>
-<div class="card"><div class="field"><label>Story title</label><input id="storyTitle" placeholder="e.g. The Secret of the Moon"></div><div class="field"><label>Your story / script</label><textarea id="storyText" placeholder="Write your story or paste your script..."></textarea></div><div class="row"><div class="field"><label>Visual style</label><select id="storyStyle"><option>Cinematic 3D animation</option><option>Anime</option><option>Realistic cinematic</option><option>2D cartoon</option><option>Storybook illustration</option></select></div><div class="field"><label>Aspect ratio</label><select id="storyRatio"><option>16:9 YouTube</option><option>9:16 Shorts / Reels</option><option>1:1 Square</option></select></div></div><button onclick="makeStoryPlan()">Prepare Scene Plan</button><button class="secondary" onclick="saveStory()">Save Project</button><div class="field"><label>Generated prompt / scene plan</label><textarea id="storyOutput" placeholder="Your scene plan will appear here..." readonly></textarea></div><div class="notice">AI video generation is not connected yet. This tool prepares a prompt; it does not render an AI video until you connect a compatible generation backend/API.</div></div>
+<section id="story" class="page">
+  <h2>📖 Story to Video</h2>
+
+  <div class="card">
+    <label>Story Title</label>
+    <input id="storyTitle" placeholder="Enter story title">
+
+    <label>Your Story</label>
+    <textarea id="storyText" rows="7"
+      placeholder="Write your complete story here..."></textarea>
+
+    <label>Visual Style</label>
+    <select id="storyStyle">
+      <option>Cinematic 3D Animation</option>
+      <option>Anime</option>
+      <option>Cartoon</option>
+      <option>Realistic</option>
+      <option>Fantasy</option>
+    </select>
+
+    <label>Aspect Ratio</label>
+    <select id="storyRatio">
+      <option>16:9 YouTube</option>
+      <option>9:16 Shorts/Reels</option>
+      <option>1:1 Square</option>
+    </select>
+
+    <button onclick="prepareStory()">Prepare Scene Plan</button>
+    <button onclick="saveStory()">Save Project</button>
+
+    <div id="storyOutput" class="output">
+      Your scene plan will appear here.
+    </div>
+  </div>
 </section>
 
-<section class="page" id="imagevideo">
-<div class="welcome"><div><h1>Image To Video Generator</h1><div class="muted">Upload an image and describe how it should move.</div></div></div>
-<div class="card"><div class="upload">Choose a starting image<br><input type="file" id="startImage" accept="image/*" onchange="previewImage(this,'imagePreview')"></div><img id="imagePreview" class="preview" style="display:none;object-fit:contain" alt="Image preview"><div class="field"><label>Motion prompt</label><textarea id="motionPrompt" placeholder="Example: Gentle camera push-in, hair and clothing move softly in the breeze, cinematic lighting..."></textarea></div><div class="row"><div class="field"><label>Duration</label><select id="motionDuration"><option>5 seconds</option><option>8 seconds</option><option>10 seconds</option></select></div><div class="field"><label>Aspect ratio</label><select id="motionRatio"><option>9:16</option><option>16:9</option><option>1:1</option></select></div></div><button onclick="prepareImagePrompt()">Prepare Image-to-Video Prompt</button><div class="field"><label>Ready-to-use prompt</label><textarea id="imagePromptOutput" readonly placeholder="Your prompt will appear here..."></textarea></div><div class="notice">Image preview and prompt preparation work locally. Actual AI animation needs a connected video model/API; no fake Generate button is shown.</div></div>
+<section id="image" class="page">
+  <h2>🖼 Image to Video</h2>
+
+  <div class="card">
+    <input type="file" id="imageFile" accept="image/*"
+      onchange="previewImage()">
+
+    <img id="imagePreview" hidden>
+
+    <label>Describe the animation</label>
+    <textarea id="imagePrompt" rows="4"
+      placeholder="Describe how the image should move..."></textarea>
+
+    <button onclick="prepareImagePrompt()">Prepare Animation Prompt</button>
+
+    <div id="imageOutput" class="output"></div>
+
+    <p class="small">
+      This prepares an animation prompt and previews your image.
+      It does not render an AI video.
+    </p>
+  </div>
 </section>
 
-<section class="page" id="faceswap">
-<div class="welcome"><div><h1>Face Swap Video</h1><div class="muted">For your own face or a person who has clearly given permission.</div></div></div>
-<div class="notice">Consent & safety: only use faces and footage you own or have permission to edit. Do not create deceptive videos, impersonations, or intimate content. Label edited media clearly when sharing.</div>
-<div class="card"><h3>1. Choose the target video</h3><div class="upload">Upload a video you own or are authorized to edit<br><input type="file" id="faceTargetVideo" accept="video/*" onchange="previewVideoFile(this,'faceTargetPreview')"></div><video id="faceTargetPreview" class="preview" controls playsinline style="display:none"></video><h3 style="margin-top:22px">2. Choose the source face photo</h3><div class="upload">Upload a clear photo you have permission to use<br><input type="file" id="faceSourceImage" accept="image/*" onchange="previewImage(this,'faceSourcePreview')"></div><img id="faceSourcePreview" class="preview" style="display:none;object-fit:contain" alt="Source face preview"><div class="field"><label>Face selection</label><select id="faceSelection"><option>One selected face</option><option>Multiple consenting people (backend support required)</option></select></div><button onclick="prepareFaceSwap()">Prepare Face Swap Job</button><div class="field"><label>Job summary</label><textarea id="faceJobOutput" readonly placeholder="Upload both files to prepare a job summary..."></textarea></div><div class="notice">This page currently supports file selection, local previews and job preparation only. Actual face replacement requires a secure AI backend. This version does not upload your files anywhere.</div></div>
+<section id="face" class="page">
+  <h2>🎭 Face Swap Video</h2>
+
+  <div class="card">
+    <label>Upload your own face image (or an image you have permission to use)</label>
+    <input type="file" id="faceImage" accept="image/*">
+
+    <label>Upload a video you have permission to edit</label>
+    <input type="file" id="faceVideo" accept="video/*">
+
+    <p class="small">
+      Upload and preview only. Actual face-swap processing
+      is not connected.
+    </p>
+
+    <button onclick="previewFaceFiles()">Preview Files</button>
+    <div id="faceOutput" class="output"></div>
+  </div>
 </section>
 
-<section class="page" id="editor">
-<div class="welcome"><div><h1>Video Editor</h1><div class="muted">A simple local editor for previewing and trimming your own video.</div></div></div>
-<div class="card"><div class="upload">Import video from your phone<br><input type="file" id="editVideoFile" accept="video/*" onchange="loadEditorVideo(this)"></div><video id="editorVideo" class="preview" controls playsinline></video><div class="row"><div class="field"><label>Start time (seconds)</label><input type="number" id="trimStart" min="0" value="0" step="0.1"></div><div class="field"><label>End time (seconds)</label><input type="number" id="trimEnd" min="0" value="0" step="0.1"></div></div><div class="toolbar"><button class="secondary" onclick="setTrimStart()">Set start to current time</button><button class="secondary" onclick="setTrimEnd()">Set end to current time</button><button onclick="exportTrim()">Export trimmed clip</button></div><div class="timeline"><div class="clip">VIDEO CLIP</div></div><div class="field"><label>Clip notes / edit plan</label><textarea id="editNotes" placeholder="Add your editing notes..."></textarea></div><div class="notice">Trim export is processed in your browser and may take time on large videos. This starter editor does not yet include multi-track effects, transitions or full timeline editing.</div><p class="muted" id="editorStatus">No video imported yet.</p><a id="downloadTrim" style="display:none;color:#c4a7ff" download="dreamai-trimmed.webm">Download trimmed video</a></div>
+<section id="editor" class="
+  page">
+  <h2>Video Editor</h2>
+  <p>Apne phone se video select karke browser mein preview dekho.</p>
+
+  <input type="file" id="editVideo" accept="video/*" onchange="previewVideo()">
+  <video id="videoPreview" controls playsinline></video>
+  <p class="notice">Yeh basic preview hai; advanced AI editing abhi connected nahi hai.</p>
 </section>
 
-<section class="page" id="voice">
-<div class="welcome"><div><h1>AI Voiceover</h1><div class="muted">Use speech voices available in your browser/device.</div></div></div>
-<div class="card"><div class="field"><label>Voiceover text</label><textarea id="voiceText" placeholder="Type the narration you want to hear..."></textarea></div><div class="field"><label>Available voice</label><select id="voiceChoice"></select></div><div class="row"><div class="field"><label>Speed</label><input type="range" id="voiceRate" min=".6" max="1.5" value="1" step=".1"></div><div class="field"><label>Pitch</label><input type="range" id="voicePitch" min=".7" max="1.4" value="1" step=".1"></div></div><button onclick="speakText()">▶ Play Voice</button><button class="secondary" onclick="speechSynthesis.cancel()">Stop</button><div class="notice">Voice availability depends on your browser and installed device voices. This feature previews speech; it does not create a downloadable audio file.</div></div>
+<section id="voice" class="page">
+  <h2>AI Voice</h2>
+  <p>Text likho aur phone ke browser se suno.</p>
+
+  <textarea id="voiceText" placeholder="Yahan apna text likho..."></textarea>
+  <button onclick="speakText()">Speak</button>
+  <button onclick="stopVoice()">Stop</button>
 </section>
 
-<section class="page" id="projects"><div class="welcome"><div><h1>My Creations</h1><div class="muted">Your saved project notes on this device.</div></div><button class="secondary" onclick="clearProjects()">Clear projects</button></div><div id="projectList" class="grid"></div></section>
-<section class="page" id="assets"><h1>Asset Store</h1><div class="card"><p>Asset library starter area. Add your own licensed images, music and video assets here.</p><div class="notice">Only upload media you own or have permission to use.</div></div></section>
-<section class="page" id="earnings"><h1>Earnings</h1><div class="card"><p>This is a placeholder for future creator analytics. No earnings or payments are processed by this static website.</p></div></section>
-<section class="page" id="analytics"><h1>Data Analysis</h1><div class="statrow"><div class="stat"><strong id="projectCount">0</strong><span class="muted">Saved projects</span></div><div class="stat"><strong>Local</strong><span class="muted">Storage mode</span></div><div class="stat"><strong>Not connected</strong><span class="muted">AI generation API</span></div></div></section>
-<section class="page" id="help"><h1>Tutorials & API</h1><div class="card"><h3>How to use DreamAI Studio</h3><p>1. Choose a creation tool from the sidebar.<br>2. Upload your own media when needed.<br>3. Preview or prepare your prompt.<br>4. Save project notes in My Creations.</p><div class="notice">To enable actual AI video, image animation or face swap, a backend service and model/API connection must be configured. Never paste private API keys into public GitHub HTML/JavaScript. Keep keys on a secure server.</div></div></section>
-<footer>DreamAI Studio • Independent project • Use media responsibly</footer>
+<section id="creations" class="page">
+  <h2>My Creations</h2>
+  <div id="savedProjects"></div>
+</section>
+
 </main>
-</div>
+
 <script>
-const pages=[...document.querySelectorAll('.page')];
-function showPage(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===id));if(id==='projects')renderProjects();if(id==='analytics')updateStats();window.scrollTo({top:0,behavior:'smooth'});}
-function previewImage(input,id){const f=input.files[0],el=document.getElementById(id);if(!f)return;el.src=URL.createObjectURL(f);el.style.display='block';}
-function previewVideoFile(input,id){const f=input.files[0],el=document.getElementById(id);if(!f)return;el.src=URL.createObjectURL(f);el.style.display='block';}
-function makeStoryPlan(){const title=document.getElementById('storyTitle').value.trim()||'Untitled Story',story=document.getElementById('storyText').value.trim();if(!story){alert('Please enter your story first.');return;}const style=document.getElementById('storyStyle').value,ratio=document.getElementById('storyRatio').value;const chunks=story.split(/(?<=[.!?])\s+/).filter(Boolean);const scenes=chunks.map((s,i)=>`Scene ${i+1}: ${s}\nVisual direction: ${style}, expressive characters, cinematic composition, consistent character appearance.`).join('\n\n');document.getElementById('storyOutput').value=`TITLE: ${title}\nSTYLE: ${style}\nFORMAT: ${ratio}\n\n${scenes}\n\nKeep character design, lighting and visual continuity consistent across scenes.`;}
-function saveProject(title,content){let list=JSON.parse(localStorage.getItem('dreamaiProjects')||'[]');list.unshift({title,content,date:new Date().toLocaleString()});localStorage.setItem('dreamaiProjects',JSON.stringify(list.slice(0,50)));alert('Project notes saved on this device.');}
-function saveStory(){const t=document.getElementById('storyTitle').value.trim()||'Story project',c=document.getElementById('storyOutput').value||document.getElementById('storyText').value;if(!c){alert('Prepare a story plan first.');return;}saveProject(t,c);}
-function prepareImagePrompt(){const f=document.getElementById('startImage').files[0],p=document.getElementById('motionPrompt').value.trim();if(!f||!p){alert('Upload an image and enter a motion prompt.');return;}document.getElementById('imagePromptOutput').value=`Animate the uploaded image into a ${document.getElementById('motionDuration').value} video, ${document.getElementById('motionRatio').value} aspect ratio.\nMotion: ${p}\nPreserve the main subject's identity, composition and visual style. Use smooth natural motion and avoid unwanted distortions.`;}
-function prepareFaceSwap(){const v=document.getElementById('faceTargetVideo').files[0],i=document.getElementById('faceSourceImage').files[0];if(!v||!i){alert('Please choose both a target video and an authorized source photo.');return;}document.getElementById('faceJobOutput').value=`FACE SWAP JOB — NOT YET SUBMITTED\nTarget video: ${v.name} (${(v.size/1048576).toFixed(1)} MB)\nSource photo: ${i.name} (${(i.size/1048576).toFixed(1)} MB)\nSelection: ${document.getElementById('faceSelection').value}\nConsent: User confirms they own or have permission to use both files.\nStatus: Waiting for a secure face-swap backend connection.`;}
-let editorDuration=0,editorObjectUrl=null;
-function loadEditorVideo(input){const f=input.files[0];if(!f)return;const v=document.getElementById('editorVideo');if(editorObjectUrl)URL.revokeObjectURL(editorObjectUrl);editorObjectUrl=URL.createObjectURL(f);v.src=editorObjectUrl;v.onloadedmetadata=()=>{editorDuration=v.duration;document.getElementById('trimStart').value=0;document.getElementById('trimEnd').value=editorDuration.toFixed(1);document.getElementById('trimEnd').max=editorDuration;document.getElementById('editorStatus').textContent=`Loaded: ${f.name} • ${editorDuration.toFixed(1)} seconds`;};}
-function setTrimStart(){const v=document.getElementById('editorVideo');document.getElementById('trimStart').value=v.currentTime.toFixed(1);}
-function setTrimEnd(){const v=document.getElementById('editorVideo');document.getElementById('trimEnd').value=v.currentTime.toFixed(1);}
-async function exportTrim(){const v=document.getElementById('editorVideo');if(!v.src){alert('Import a video first.');return;}const start=Number(document.getElementById('trimStart').value),end=Number(document.getElementById('trimEnd').value);if(!(end>start)||start<0||end>editorDuration+0.2){alert('Please enter a valid start and end time.');return;}if(!window.MediaRecorder||!v.captureStream){alert('This browser does not support browser-based video export.');return;}const status=document.getElementById('editorStatus');status.textContent='Preparing export... keep this page open.';const stream=v.captureStream();let mime='video/webm;codecs=vp9';if(!MediaRecorder.isTypeSupported(mime))mime='video/webm';let recorder;try{recorder=new MediaRecorder(stream,{mimeType:mime});}catch(e){status.textContent='Export is not supported in this browser.';return;}const chunks=[];recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};recorder.onstop=()=>{const blob=new Blob(chunks,{type:'video/webm'}),url=URL.createObjectURL(blob),a=document.getElementById('downloadTrim');a.href=url;a.style.display='inline-block';status.textContent='Export ready. Tap the download link.';};v.pause();v.currentTime=start;await new Promise(resolve=>{const fn=()=>{v.removeEventListener('seeked',fn);resolve();};v.addEventListener('seeked',fn);});recorder.start();await v.play();const stopAt=()=>{if(v.currentTime>=end){v.pause();recorder.stop();v.removeEventListener('timeupdate',stopAt);}};v.addEventListener('timeupdate',stopAt);status.textContent='Recording trimmed section...';}
-function renderProjects(){const list=JSON.parse(localStorage.getItem('dreamaiProjects')||'[]'),el=document.getElementById('projectList');el.innerHTML=list.length?list.map((p,i)=>`<div class="card"><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.date)}</p><p>${escapeHtml(p.content.slice(0,170))}${p.content.length>170?'…':''}</p><button class="secondary" onclick="deleteProject(${i})">Delete</button></div>`).join(''):'<div class="empty">No saved projects yet. Create a story plan and save it here.</div>';updateStats();}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function deleteProject(i){let l=JSON.parse(localStorage.getItem('dreamaiProjects')||'[]');l.splice(i,1);localStorage.setItem('dreamaiProjects',JSON.stringify(l));renderProjects();}
-function clearProjects(){if(confirm('Delete all saved project notes from this browser?')){localStorage.removeItem('dreamaiProjects');renderProjects();}}
-function updateStats(){document.getElementById('projectCount').textContent=JSON.parse(localStorage.getItem('dreamaiProjects')||'[]').length;}
-function loadVoices(){const sel=document.getElementById('voiceChoice');if(!sel)return;const voices=speechSynthesis.getVoices();sel.innerHTML='';voices.forEach((v,i)=>{const o=document.createElement('option');o.value=i;o.textContent=v.name+' ('+v.lang+')';sel.appendChild(o);});}
-function speakText(){const t=document.getElementById('voiceText').value.trim();if(!t){alert('Enter voiceover text first.');return;}if(!('speechSynthesis'in window)){alert('Speech synthesis is not supported in this browser.');return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t),voices=speechSynthesis.getVoices();u.voice=voices[Number(document.getElementById('voiceChoice').value)]||null;u.rate=Number(document.getElementById('voiceRate').value);u.pitch=Number(document.getElementById('voicePitch').value);speechSynthesis.speak(u);}
-if('speechSynthesis'in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices;}
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  const selectedPage = document.getElementById(pageId);
+  if (selectedPage) selectedPage.classList.add("active");
+}
+
+function prepareStory() {
+  const prompt = document.getElementById("storyPrompt").value.trim();
+  const style = document.getElementById("storyStyle").value;
+  const scenes = document.getElementById("sceneCount").value;
+  const output = document.getElementById("storyOutput");
+
+  if (!prompt) {
+    output.textContent = "Pehle apni story likho.";
+    return;
+  }
+
+  const sentences = prompt.split(/[.!?]+/).filter(s => s.trim());
+  let result = "Scene Plan\n\n";
+
+  for (let i = 0; i < Number(scenes); i++) {
+    const sentence = sentences[i % Math.max(sentences.length, 1)] || prompt;
+    result += "Scene " + (i + 1) + ":\n";
+    result += sentence.trim() + "\n";
+    result += "Visual style: " + style + "\n\n";
+  }
+
+  output.textContent = result;
+}
+
+function saveStory() {
+  const prompt = document.getElementById("storyPrompt").value.trim();
+
+  if (!prompt) {
+    alert("Pehle story likho.");
+    return;
+  }
+
+  const projects = JSON.parse(localStorage.getItem("dreamaiProjects") || "[]");
+  projects.push({
+    title: prompt.slice(0, 40),
+    prompt: prompt,
+    date: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("dreamaiProjects", JSON.stringify(projects));
+  alert("Project saved!");
+  loadProjects();
+}
+
+function loadProjects() {
+  const container = document.getElementById("savedProjects");
+  if (!container) return;
+
+  const projects = JSON.parse(localStorage.getItem("dreamaiProjects") || "[]");
+
+  if (projects.length === 0) {
+    container.textContent = "Abhi koi saved project nahi hai.";
+    return;
+  }
+
+  container.innerHTML = "";
+
+  projects.forEach(project => {
+    const item = document.createElement("div");
+    item.className = "project-card";
+
+    const title = document.createElement("h3");
+    title.textContent = project.title;
+
+    const date = document.createElement("p");
+    date.textContent = project.date;
+
+    const prompt = document.createElement("p");
+    prompt.textContent = project.prompt;
+
+    item.append(title, date, prompt);
+    container.appendChild(item);
+  });
+}
+
+function previewImage() {
+  const input = document.getElementById("imageInput");
+  const preview = document.getElementById("imagePreview");
+
+  if (!input || !input.files[0]) return;
+
+  preview.src = URL.createObjectURL(input.files[0]);
+  preview.style.display = "block";
+}
+
+function prepareImagePrompt() {
+  const prompt = document.getElementById("imagePrompt").value.trim();
+  const output = document.getElementById("imageOutput");
+
+  if (!prompt) {
+    output.textContent = "Pehle image ke liye prompt likho.";
+    return;
+  }
+
+  output.textContent =
+    "Image-to-Video Prompt:\n" +
+    prompt +
+    "\n\nSuggested motion: slow camera movement, natural motion, cinematic lighting.";
+}
+
+function previewFaceFiles() {
+  const input = document.getElementById("faceFiles");
+  const preview = document.getElementById("facePreview");
+
+  if (!input || !preview) return;
+
+  preview.innerHTML = "";
+
+  Array.from(input.files).forEach(file => {
+    const image = document.createElement("img");
+    image.src = URL.createObjectURL(file);
+    image.alt = "Selected image preview";
+    image.style.maxWidth = "130px";
+    image.style.margin = "6px";
+    preview.appendChild(image);
+  });
+}
+
+function previewVideo() {
+  const input = document.getElementById("editVideo");
+  const video = document.getElementById("videoPreview");
+
+  if (!input.files || !input.files[0]) return;
+
+  video.src = URL.createObjectURL(input.files[0]);
+  video.style.display = "block";
+}
+
+function speakText() {
+  const text = document.getElementById("voiceText").value.trim();
+
+  if (!text) {
+    alert("Pehle text likho.");
+    return;
+  }
+
+  if (!("speechSynthesis" in window)) {
+    alert("Is browser mein text-to-speech supported nahi hai.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  window.speechSynthesis.speak(utterance);
+}
+
+function stopVoice() {
+  if ("speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+}
+
+loadProjects();
 </script>
 </body>
 </html>
